@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Локальное файловое хранилище</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    h1 { margin-bottom: 10px; }
+    .drop-zone {
+      border: 2px dashed #aaa;
+      padding: 40px;
+      text-align: center;
+      color: #666;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .drop-zone.dragover {
+      background: #e7f3ff;
+      border-color: #3399ff;
+      color: #333;
+    }
+    input[type="file"] { margin-bottom: 20px; }
+
+    .filters {
+      margin-bottom: 15px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th { background: #f3f3f3; }
+    .small { color: #666; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <h1>Локальное файловое хранилище</h1>
+
+  <!-- Drag & Drop -->
+  <div class="drop-zone" id="dropZone">Перетащите файлы сюда</div>
+
+  <!-- Input -->
+  <input type="file" id="fileInput" multiple>
+
+  <!-- Фильтры -->
+  <div class="filters">
+    <label>Тип:
+      <select id="typeFilter">
+        <option value="all">Все</option>
+        <option value="image/">Изображения</option>
+        <option value="text/">Текстовые</option>
+        <option value="application/">Документы</option>
+      </select>
+    </label>
+    <label>Макс. размер (КБ):
+      <input type="number" id="sizeFilter" placeholder="например 500" min="0" style="width:100px">
+    </label>
+    <button id="applyFilters">Применить фильтр</button>
+    <button id="clearStorage">Очистить хранилище</button>
+  </div>
+
+  <!-- Таблица -->
+  <table>
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Тип</th>
+        <th>Размер</th>
+        <th>Действие</th>
+      </tr>
+    </thead>
+    <tbody id="fileList">
+      <tr><td colspan="4" class="small">Файлы не загружены</td></tr>
+    </tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
